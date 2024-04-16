@@ -23,5 +23,6 @@ Route::post('/create-pengaduan', [PengaduansController::class, 'createPengaduan'
 Route::get('/get-all-pengaduan', [PengaduansController::class, 'getAllPengaduan']);
 Route::get('/detail-pengaduan/{id}', [PengaduansController::class, 'getPengaduanById']);
 Route::put('/pengaduan/{id}/rating', [PengaduansController::class, 'addRating']);
+Route::get('/pengaduan/{user_nik}', [PengaduansController::class, 'getPengaduanByUserNik']);
 
 

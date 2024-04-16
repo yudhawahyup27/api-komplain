@@ -18,6 +18,11 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        // Cek jika peran pengguna adalah USER
+        if ($user->roles !== 'USER') {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
         // Generate token
         $token = bin2hex(random_bytes(32));
 
@@ -26,7 +31,12 @@ class AuthController extends Controller
             'token' => $token
         ]);
 
-        return response()->json(['token' => 'Bearer ' . $token], 200);
-
+        return response()->json([
+            'token' => 'Bearer ' . $token,
+            'nik' => $user->nik // Menambahkan NIK ke respons
+        ], 200);
     }
+
+
+
 }
